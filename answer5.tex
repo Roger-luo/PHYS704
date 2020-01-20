@@ -1,0 +1,505 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+
+\title{PHYS704: Assignment 5}
+\author{Xiuzhe Luo}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Attractive shell potential}
+\subsection*{1.a}
+
+$$
+\begin{aligned}
+    B_2 &= -\frac{1}{2}\int d^3q (e^{-\beta \mathcal{V}(q)} - 1)\\
+    &= -\frac{1}{2}[\int_{0}^a 4\pi r^2 dr (e^{-\beta \mathcal{V}(r)} - 1) + \int_{a}^{b} 4\pi r^2 dr (e^{-\beta \mathcal{V}(r)} - 1)
+        + \int_{b}^{\infty} 4\pi r^2 dr (e^{-\beta \mathcal{V}(r)} - 1)]\\
+    &= -\frac{1}{2}[-\int_{0}^a 4\pi r^2 dr + \int_{a}^{b} 4\pi r^2 dr (e^{\beta \epsilon} - 1)]\\
+    &= \frac{2\pi a^3}{3} - (e^{\frac{\epsilon}{k_B T}} - 1) \frac{2\pi (b^3 - a^3)}{3}\\
+    &= \frac{2\pi b^3}{3} - e^{\frac{\epsilon}{k_B T}} \frac{2\pi (b^3 - a^3)}{3}\\
+\end{aligned}
+$$
+
+\subsection*{1.b}
+at high temperature, we have
+
+$$
+\begin{aligned}
+    &\frac{2\pi b^3}{3} - e^{\frac{\epsilon}{k_B T}} \frac{2\pi (b^3 - a^3)}{3} \approx \frac{2\pi b^3}{3} - (1 + \frac{\epsilon}{k_B T}) \frac{2\pi (b^3 - a^3)}{3}\\
+    &= \frac{2\pi a^3}{3} - \frac{\epsilon}{k_B T} \frac{2\pi (b^3 - a^3)}{3}
+\end{aligned}
+$$
+
+at low temperature $\beta >> 1$, the attractive component takes over, and
+
+$$
+B_2 \approx - e^{\frac{\epsilon}{k_B T}} \frac{2\pi (b^3 - a^3)}{3} < 0
+$$
+
+\subsection*{1.c}
+From the expansion
+
+$$
+\frac{P}{k_B T} = \frac{N}{V} + B(T) \frac{N^2}{V^2}
+$$
+
+for constant $T$ and $N$, we have
+
+$$
+\begin{aligned}
+    \frac{1}{k_B T} &= -\frac{N}{V^2} \frac{\partial V}{\partial P} - 2B_2(T) \frac{N^2}{V^3} \frac{\partial V}{\partial P}\\
+    \frac{1}{k_B T} &= (-\frac{N}{V} - 2B_2(T) \frac{N^2}{V^2}) \frac{1}{V}\frac{\partial V}{\partial P}\\
+    \kappa_T = -\frac{1}{V}\frac{\partial V}{\partial P} &= \frac{V}{N k_B T} \frac{1}{1 + 2B_2(T) \frac{N}{V}} \approx \frac{V}{N k_B T}(1 - \frac{2B_2(T)N}{V})
+\end{aligned}
+$$
+
+\subsection*{1.d}
+using the high temperature limit, we have
+
+$$
+\begin{aligned}
+    \frac{P}{k_B T} &= n + (\frac{2\pi a^3}{3} - \frac{\epsilon}{k_B T} \frac{2\pi (b^3 - a^3)}{3}) n^2\\
+    P &= k_B T n + k_B T(\frac{2\pi a^3}{3} - \frac{\epsilon}{k_B T} \frac{2\pi (b^3 - a^3)}{3}) n^2\\
+    P + \epsilon \frac{2\pi (b^3 - a^3)}{3} n^2 &= k_B T n(1 + \frac{2\pi a^3}{3} n) \approx k_B T n(1 - \frac{2\pi a^3}{3} n)^{-1}\\
+    (P + \epsilon \frac{2\pi (b^3 - a^3)}{3} n^2)(1 - \frac{2\pi a^3}{3} n) &= k_B T n\\
+    (P + \epsilon \frac{2\pi (b^3 - a^3)}{3} \frac{N}{V}^2)(V - \frac{2\pi a^3}{3} N) &= N k_B T\\
+\end{aligned}
+$$
+
+thus the \textit{van der Waals} parameters are $a = \epsilon \frac{2\pi (b^3 - a^3)}{3}$ and $b = \frac{2\pi a^3}{3}$
+
+\section*{Surfactant condensation}
+\subsection*{2.a}
+
+$$
+\begin{aligned}
+    Z &= \frac{1}{N!}\int \prod_i^N \frac{d^2q d^2p}{h^2} \exp[-\beta(\sum_i \frac{\vec{p}_i^2}{2m} + \frac{1}{2}\sum_{ij}\mathcal{V}(\vec{q}_i - \vec{q}_j))]\\
+    &=\frac{1}{N!}\int \frac{d^2q}{h^2} \exp[-\frac{\beta}{2}\sum_{ij}\mathcal{V}(\vec{q}_i - \vec{q}_j)] (\int d^2p \exp[-\beta\frac{\vec{p}^2}{2m}])^N\\
+    &=(\frac{2\pi m}{\beta})^N\frac{1}{N!h^{2N}}\int \prod_i^N d^2q_i \exp[-\frac{\beta}{2}\sum_{ij}\mathcal{V}(\vec{q}_i - \vec{q}_j)]\\
+    &=\frac{1}{\lambda^{2N} N!} \int \prod_i^N d^2q_i \exp[-\frac{\beta}{2}\sum_{ij}\mathcal{V}(\vec{q}_i - \vec{q}_j)]
+\end{aligned}
+$$
+
+\subsection*{2.b}
+Denote the area of a molecule as $\Omega = \pi a^2$, the first molecule can occupy $A$, the 2nd $A - \Omega$,
+
+$$
+\begin{aligned}
+    S_N = \int \frac{\prod_i d^3q_i}{N!} &= \frac{1}{N!} A (A-\Omega)(A-2\Omega)\cdots (A-(N-1)\Omega)\\
+        &= \frac{1}{N!}(A - \frac{N\Omega}{2})^N
+\end{aligned}
+$$
+
+\subsection*{2.c}
+the total potential energy can be calculated with following
+
+$$
+\begin{aligned}
+    \overline{}{U} &= \frac{1}{2}\int d^2r_1 d^2r_2 n_1 n_2 \mathcal{V}(r_1 - r_2)\\
+      &= \frac{1}{2}(\frac{N}{A})^2 \int d^2r_1 d^2r_2 \mathcal{V}(r_1 - r_2)\\
+      &= \frac{1}{2}(\frac{N}{A})^2 A \int 2\pi r dr \mathcal{V}(r)\\
+      &= \frac{1}{2}(\frac{N}{A})^2 A -u_0\\
+      &= -\frac{1}{2} \frac{N^2 u_0}{A}
+\end{aligned}
+$$
+
+thus the partition function can be written as
+
+$$
+\begin{aligned}
+    Z &= \frac{1}{\lambda^{2N}} \frac{1}{N!}(A - \frac{N\Omega}{2})^N \exp[-\beta \overline{U}]\\
+    &=\frac{(A - \frac{N\Omega}{2})^N}{N!\lambda^{2N}}\exp[\frac{\beta N^2 u_0}{2A} ]
+\end{aligned}
+$$
+
+\subsection*{2.d}
+The work done by surface tension is $\sigma dA$, thus we have free energy
+
+$$
+dG = -SdT + \sigma dA + \mu dN
+$$
+
+thus
+
+$$
+\begin{aligned}
+    \sigma &= \left.\frac{\partial G}{\partial A}\right|_{T, n}\\
+    &= -k_B T \frac{\partial \ln(Z)}{\partial A}\\
+    &= -k_B T \frac{\partial}{\partial A}[N\ln(A - \frac{N\Omega}{2}) - \ln(N!\lambda^{2N}) + \frac{\beta N^2 u_0}{2A}]\\
+    &= \frac{-N k_B T}{A - \frac{N\Omega}{2}} + \frac{N^2 u_0}{2A^2}\\
+    &= \frac{-k_B T}{n - \frac{\Omega}{2}} + \frac{u_0}{2n^2}
+\end{aligned}
+$$
+
+\subsection*{2.e}
+since the first and second derivative of $\sigma$ of $A$ is zero at critical point $T_c$, we have
+
+$$
+\begin{aligned}
+    \left.\frac{\partial \sigma}{\partial A}\right|_{T_c} &= \frac{N k_B T_c}{(A - \frac{N\Omega}{2})^2} - \frac{N^2 u_0}{A^3} = 0\\
+    T_c &= \frac{N u_0 (A - \frac{N\Omega}{2})^2}{k_B A^3}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+    \left.\frac{\partial^2 \sigma}{\partial A^2}\right|_{T_c} &= \frac{-2N k_B T_c}{(A - \frac{N\Omega}{2})^3} + \frac{3N^2 u_0}{A^4} = 0\\
+    T_c &= \frac{3N u_0 (A - \frac{N\Omega}{2})^3}{2 k_B A^4}
+\end{aligned}
+$$
+
+thus we have
+
+$$
+\begin{aligned}
+    \frac{N u_0 (A - \frac{N\Omega}{2})^2}{k_B A^3} &= \frac{3N u_0 (A - \frac{N\Omega}{2})^3}{2 k_B A^4}\\
+     1 &= \frac{3 (A - \frac{N\Omega}{2})}{2 A}\\
+     A &= \frac{3N\Omega}{2}
+\end{aligned}
+$$
+
+thus
+
+$$
+\begin{aligned}
+    T_c &= \frac{N u_0 (A - \frac{N\Omega}{2})^2}{k_B A^3} = \frac{N u_0 (N\Omega)^2}{k_B (\frac{3N\Omega}{2})^3}\\
+    &=\frac{8 u_0 }{27 k_B \Omega}\\
+\end{aligned}
+$$
+
+At low temperature there is a phase transition thus it doesn't satisfy the original equation anymore.
+
+\subsection*{2.f}
+
+$$
+\begin{aligned}
+    C_A = \left.\frac{dQ}{dT}\right|_A = \left.\frac{\partial E}{\partial T}\right|_A
+\end{aligned}
+$$
+
+
+since
+$$
+\begin{aligned}
+    E &= -\frac{\partial \ln(Z)}{\partial \beta}\\
+    &= -\frac{\partial}{\partial \beta} \{N\ln(A - \frac{N\Omega}{2}) - \ln(N!h^{2N}) + N\ln(2\pi m) - N\ln(\beta) + \frac{\beta N^2 u_0}{2A}\}\\
+    &= \frac{N}{\beta} - \frac{N^2 u_0}{2A}\\
+    &= Nk_B T - \frac{N^2 u_0}{2A}
+\end{aligned}
+$$
+
+thus $C_A = N k_B$
+
+$$
+C_{\sigma} = \left.\frac{dQ}{dT}\right|_{\sigma} = \frac{dE - \sigma dA}{dT} = C_A - \sigma \left.\frac{\partial A}{\partial T}\right|_{\sigma}
+$$
+
+\section*{Critical point behavior}
+\subsection*{3.a}
+
+$$
+\begin{aligned}
+    P &= -\left.\frac{\partial F}{\partial V}\right|_{T, N}\\
+    &= k_B T\frac{\partial}{\partial V} \{\ln(Z_{ideal}) + \frac{\beta b N^2}{2V} - \frac{\beta c N^3}{6V^2}\}\\
+    &= k_B T \{\frac{N}{V} - \frac{\beta b N^2}{2V^2} + \frac{\beta c N^3}{3V^3}\}\\
+    &= n k_B T - \frac{b}{2}n^2 + \frac{c}{3}n^3
+\end{aligned}
+$$
+
+\subsection*{3.b}
+the stability condition $-\delta P \delta V \leq 0$ implies that $\delta P \delta n \geq 0$, thus we have
+
+$$
+\begin{aligned}
+    \left.\frac{\partial P(T=T_c)}{\partial n}\right|_{T, V} = k_B T - bn + cn^2 = 0\\
+    \left.\frac{\partial^2 P(T=T_c)}{\partial n^2}\right|_{T, V} = -b + 2cn = 0
+\end{aligned}
+$$
+
+thus
+
+$$
+\begin{aligned}
+    n_c &= \frac{b}{2c}\\
+    T_c &= \frac{bn_c - cn_c^2}{k_B} = \frac{\frac{b^2}{2c} - \frac{b^2}{4c}}{k_B}\\
+        &= \frac{b^2}{k_B} (\frac{1}{2c} - \frac{1}{4c}) = \frac{b^2}{4c k_B}
+\end{aligned}
+$$
+
+\subsection*{3.c}
+
+$$
+\begin{aligned}
+    P(T_c, n_c) &= k_B T_c n_c - \frac{b}{2}n_c^2 + \frac{c}{3}n_c^3\\
+    &= k_B \frac{b^2}{4c k_B} \frac{b}{2c} - \frac{b}{2} \frac{b^2}{4c^2} + \frac{c}{3} \frac{b^3}{8c^3}\\
+    &= \frac{b^3}{24c^2}
+\end{aligned}
+$$
+
+thus $k_B T_c n_c / P_c = k_B \frac{b^2}{4c k_B} \frac{b}{2c} / \frac{b^3}{24c^2} = 24/8 = 3$
+
+\subsection*{3.d}
+
+
+since we have
+
+$$
+\begin{aligned}
+    \partial_P P = k_B T \partial_P\{\frac{N}{V} - \frac{\beta b N^2}{2V^2} + \frac{\beta c N^3}{3V^3}\}\\
+    1 = k_B T \{-\frac{N}{V^2} + \frac{\beta b N^2}{V^3} -\frac{\beta c N^3}{V^4} \} \frac{\partial V}{\partial P}
+\end{aligned}
+$$
+
+thus
+
+$$
+\begin{aligned}
+    \kappa_T &= -\left.\frac{1}{V}\frac{\partial V}{\partial P}\right|_T\\
+    &=\frac{1}{k_B T} \frac{1}{-\frac{N}{V} + \frac{\beta b N^2}{V^2} -\frac{\beta c N^3}{V^3}}\\
+    &=- \frac{1}{nk_B T - b n^2 +c n^3}\\
+\end{aligned}
+$$
+
+at $n = n_c = \frac{b}{2c}$ we have
+
+$$
+\begin{aligned}
+    \kappa_T &= -\frac{1}{k_B T\frac{b}{2c} - \frac{b^3}{4c^2} + \frac{b^3}{8c^2}}\\
+    &= -\frac{1}{k_B T\frac{b}{2c} - \frac{b^3}{8c^2}}\\
+    &= -n_c\frac{1}{k_B T - \frac{b^2}{4c}}
+\end{aligned}
+$$
+
+\subsection*{3.e}
+
+$$
+\begin{aligned}
+    P - P_c &= n k_B T - \frac{b}{2}n^2 + \frac{c}{3}n^3 - \frac{b^3}{24c^2}\\
+    &= \frac{b^2}{4c} n - \frac{b}{2}n^2 + \frac{c}{3}n^3 - \frac{b^3}{24c^2}\\
+    &= \frac{c}{3}[3n_c^2 n - 3n_c n^2 + n^3 - n_c^3]\\
+    &= \frac{c}{3} (n - n_c)^3
+\end{aligned}
+$$
+
+\subsection*{3.f}
+the chemical potential of two phases are equal at critical point, which implies
+
+$$
+\begin{aligned}
+    0 &= \mu_{+} - \mu_{-} = \int_{n_{-}}^{n^{+}} \frac{dP}{n}\\
+    &= \int_{n_{-}}^{n_{+}} \frac{1}{n} (k_B T - bn + cn^2) dn\\
+    &= k_B T \ln(\frac{n_{+}}{n_{-}}) - b (n_{+} - n_{-}) + \frac{1}{2}c(n_{+}^2 - n_{-}^2)\\
+    &= k_B T \ln(\frac{1+\delta}{1-\delta}) - 2b n_c \delta + 2 c n_c^2 \delta\\
+    &(2b n_c - 2 c n_c^2)\delta = k_B T \ln(\frac{1+\delta}{1-\delta})\\
+    &\frac{b^2}{2c}\delta = k_B T \ln(\frac{1+\delta}{1-\delta})\\
+    &\delta = \frac{T}{2T_c} [\ln(1+\delta) - \ln(1-\delta)] \approx \frac{T}{T_c} [\delta - \delta^3], \quad \delta \rightarrow 0\\
+    &\delta = \sqrt{1 - \frac{T_c}{T}}
+\end{aligned}
+$$
+
+\section*{Electron spin}
+\subsection*{4.a}
+if $B$ is along the z axis, then we have
+
+$$
+\rho = \frac{1}{Z} \exp[-\beta H] = \frac{1}{Z} \exp[\beta\mu_B B_z \sigma_z] =
+\frac{1}{Z}\begin{pmatrix}
+    \exp(\beta\mu_B B_z) & 0\\
+    0 & \exp(-\beta\mu_B B_z)
+\end{pmatrix}
+$$
+
+the normalization condition will be $tr(\rho) = 1$, thus
+
+$$
+Z = \exp(\beta\mu_B B_z) + \exp(-\beta\mu_B B_z) = 2\cosh(\beta \mu_B B)
+$$
+
+\subsection*{4.b}
+if $B$ is along the x axis, then we have
+
+$$
+\begin{aligned}
+    \rho &= \frac{1}{Z} \exp[-\beta H] = \frac{1}{Z} \exp[\beta\mu_B B_x \sigma_x]\\
+    &=\frac{1}{Z}[\sum_{n=0}^{\infty} \frac{1}{n!} (\beta\mu_B B_x \sigma_x)^n]\\
+    &=\frac{1}{Z}[\sum_{k=0}^{\infty} \frac{1}{(2k)!} (\beta\mu_B B_x)^{2k} I + \sum_{k=0}^{\infty} \frac{1}{(2k+1)!} (\beta\mu_B B_x)^{2k+1} \sigma_x]\\
+    &=\frac{1}{Z}[\cosh(\beta\mu_B B_x) \mathbf{I} + \sinh(\beta\mu_B B_x)\mathbf{\sigma}_x]
+\end{aligned}
+$$
+
+the normalization condition will be $tr(\rho) = 1$, thus
+
+$$
+Z = 2\cosh(\beta\mu_B B_x)
+$$
+
+\subsection*{4.c}
+along z axis
+
+$$
+\begin{aligned}
+    \langle E \rangle &= tr(\rho H) = \frac{-\mu_B B_z}{Z}tr[\begin{pmatrix}
+        \exp(\beta\mu_B B_z) & 0\\
+        0 & \exp(-\beta\mu_B B_z)
+    \end{pmatrix} \sigma_z]\\
+    &= \frac{-\mu_B B_z}{Z} 2\sinh(\beta\mu_B B_z)\\
+    &= -\mu_B B_z \tanh(\beta\mu_B B_z)
+\end{aligned}
+$$
+
+along x axis
+
+$$
+\begin{aligned}
+    \langle E \rangle &= tr(\rho H) = \frac{-\mu_B B_x}{Z} tr[[\cosh(\beta\mu_B B_x) \mathbf{I} + \sinh(\beta\mu_B B_x)\mathbf{\sigma}_x]\sigma_x]\\
+    &=\frac{-\mu_B B_x}{Z} tr[\cosh(\beta\mu_B B_x) \sigma_x + \sinh(\beta\mu_B B_x) I]\\
+    &=-\mu_B B_x 2\sinh(\beta\mu_B B_x)\\
+    &=-\mu_B B_z \tanh(\beta\mu_B B_z)
+\end{aligned}
+$$
+
+\section*{Quantum mechanical entropy}
+\subsubsection*{5.a}
+
+$$
+\frac{d\rho}{dt} = -\frac{i}{\hbar}[H, \rho]
+$$
+
+and we have
+
+$$
+\begin{aligned}
+    \frac{dS(t)}{dt} &= -\frac{d}{dt} tr[\rho(t)\ln(\rho(t))]\\
+    &=-tr[\frac{d}{dt} \rho(t) \ln(\rho(t))]\\
+    &=-tr[\frac{d \rho(t)}{dt} \ln(\rho(t)) +  \rho(t) \frac{d}{dt}\ln(\rho(t))]\\
+    &=-tr[\frac{d \rho(t)}{dt} \ln(\rho(t)) +  \frac{d \rho(t)}{dt}]\\
+    &=\frac{i}{\hbar} tr[(\ln(\rho(t)) + 1)[H, \rho]]\\
+    &=\frac{i}{\hbar} [tr((\ln(\rho(t)) + 1) H \rho) - tr((\ln(\rho(t)) + 1) \rho H)]
+    &= 0
+\end{aligned}
+$$
+
+\subsubsection*{5.b}
+
+$$
+\begin{aligned}
+    L &= S(t) + \alpha (tr(\rho\mathcal{H}) - E) + \beta (tr(\rho) - 1)\\
+    &= -tr[\rho(t)\ln(\rho(t))] + \alpha (E - tr(\rho\mathcal{H})) + \beta (tr(\rho) - 1)\\
+    &= tr[\rho \{-\ln(\rho) - \alpha \mathcal{H} -\beta\}] + \alpha E + \beta
+\end{aligned}
+$$
+
+thus we have
+
+$$
+\begin{aligned}
+    \frac{\partial L}{\partial \rho} &= -\ln(\rho) - 1 - \alpha \mathcal{H} - \beta = 0\\
+    \frac{\partial L}{\partial \alpha} &= E - \rho \mathcal{H} = 0\\
+    \frac{\partial L}{\partial \beta} &= 1 - \rho = 0
+\end{aligned}
+$$
+
+the density can be written as
+
+$$
+\rho = \exp(-(\beta + 1)) tr(\exp(-\alpha\mathcal{H}))
+$$
+
+and the factors should have the following equations
+
+$$
+\begin{aligned}
+    \exp(\beta + 1) &= tr(\exp(-\alpha\mathcal{H}) )\\
+    tr(\exp(-\alpha\mathcal{H})\mathcal{H}) &= E \exp(\beta + 1)\\
+    \exp(-\alpha\mathcal{H}) (\mathcal{H} -E) &= 0
+\end{aligned}
+$$
+
+where $\alpha$ and $\beta$ can be solved from above matrix equation.
+
+\subsubsection*{5.c}
+
+the density in 5.b is stationary, since $\mathcal{H}$ and $\exp[-\alpha\mathcal{H}]$ commute, because
+
+$$
+\begin{aligned}
+    \mathcal{H} \exp[-\alpha\mathcal{H}] &= -\alpha\mathcal{H}^2 + \alpha\mathcal{H}^3/2 + \cdots\\
+    \exp[-\alpha\mathcal{H}]\mathcal{H} &= -\alpha\mathcal{H}^2 + \alpha\mathcal{H}^3/2 + \cdots\\
+\end{aligned}
+$$
+
+$$
+\frac{\partial \rho}{\partial t} = 0
+$$
+
+\section*{van Leeuwens theorem}
+the partition function is
+
+$$
+\begin{aligned}
+    Z &= \frac{1}{N!}\int \prod_{i}^{N} \frac{d^3p d^3q}{h^3} \exp[-\beta \mathcal{H}] = \frac{1}{N!}\int \prod_{i}^{N} \frac{d^3p d^3q}{h^3}\exp(-\beta [\sum_i \frac{(\vec{p}_i - e\vec{A})^2}{2m}+ U])\\
+    &= \frac{1}{N!}\int \prod_{i}^{N} d^3q \exp[-\beta U] \int \prod_{i}^{N} \frac{d^3p}{h^3} \exp(-\beta \sum_i \frac{(\vec{p}_i - e\vec{A})^2}{2m})\\
+    &= \frac{1}{N! h^{3N}}\int \prod_{i}^{N} d^3q \exp[-\beta U] (\int d^3p \exp[-\beta \frac{(\vec{p}_i - e\vec{A})^2}{2m}])^N\\
+    &= \frac{1}{N! h^{3N}}\int \prod_{i}^{N} d^3q \exp[-\beta U] \sqrt{\frac{2\pi m}{\beta}}
+\end{aligned}
+$$
+
+the derivative of $B$ is then just zero.
+
+\section*{The binary alloy}
+
+\subsection*{7.a}
+The minimum energy configuration has as little A-B bonds as possible, thus the zero temperature we have the minimum
+bonds when A B sperates.
+
+\subsection*{7.b}
+
+$$
+\begin{aligned}
+    E &= N_{bonds} * (-J p_A^2 -Jp_B^2 + Jp_A p_B)\\
+    &= -3JN(\frac{N_A - N_B}{N})^2
+\end{aligned}
+$$
+
+\subsection*{7.c}
+The entropy is
+
+$$
+\begin{aligned}
+    S &= k_B \ln(\frac{N!}{N_A! N_B!})\\
+    &= k_B (N\ln(N) - N_A \ln(N_A) - N_B \ln(N_B)) = -Nk_B (p_A \ln(p_A) + p_B\ln(p_B))
+\end{aligned}
+$$
+
+\subsection*{7.d}
+
+$$
+\begin{aligned}
+    F &= E - TS\\
+    &= -3J N x^2 + N k_B T (\frac{N_A}{N} \ln(\frac{N_A}{N}) + \frac{N_B}{N}\ln(\frac{N_B}{N}))
+\end{aligned}
+$$
+
+and since $\frac{1 + x}{2} = \frac{N_A}{N}, \frac{1 - x}{2} = \frac{N_B}{N}$
+
+$$
+F = -3JNx^2 + Nk_B T (\frac{1 + x}{2} \ln(\frac{1 + x}{2}) + \frac{1 - x}{2} \ln(\frac{1 - x}{2}))
+$$
+
+expand F to fourth order of x, we have
+
+$$
+F = -Nk_B T \ln(2) + N (\frac{k_B T}{2} - 3J) x^2 + \frac{N k_B T}{12}x^4
+$$
+
+where the second order should be zero at $T_c$, gives
+
+$$
+T_c = \frac{6J}{k_B}
+$$
+
+\end{document}

@@ -1,0 +1,329 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+
+\title{PHYS704: Assignment 6}
+\author{Xiuzhe Luo}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Numerical estimates}
+\subsection*{1.a}
+assume room temperature is $300K$
+the heat capcity of Fermi gas is $\frac{C_{elec}}{N k_B} = \frac{\pi^2}{2} (\frac{T}{T_F}) \approx 0.029$, and for Boson
+it is 
+
+$$
+\frac{C_V}{N k_B} = 9(\frac{T}{T_D})^3 \int^{T_D/T}_0 \frac{x^4}{(e^x - 1)^2} dx
+$$
+
+for phonon gas in iron, $T_D = 470K, T = 300K$, we calculate the above integral numerically, we have
+
+$$
+\frac{C_V}{N k_B} = 0.87
+$$
+
+thus $C_e/C_p = 0.032$
+
+\subsection*{1.b}
+the thermal wavelength is given by
+
+$$
+\lambda = \frac{h}{\sqrt{2\pi m k_B T}} = \frac{6.67\times 10^{-34} Js}{\sqrt{2\pi\cdot 1.67\times 10^{-27}kg\cdot 1.38\times 10^{-23} JK^{-1} 300K}} \approx 1e-10 m \approx 1 \mathring{A}
+$$
+
+the minimum wavelength of a phonon in a typical criystal is $0.01m$
+
+\subsection*{1.c}
+
+$$
+n\lambda^3 = \frac{nh^3}{(2\pi m k_B T)^{3/2}}
+$$
+
+assume they are ideal gas, we have $P = nk_B T$, then
+
+$$
+n\lambda^3 = \frac{P}{(k_B T)^{5/2}} \frac{h^3}{(2\pi m)^{3/2}}
+$$
+
+thus, for protons
+
+$$
+(n\lambda^3)_{\text{proton}} = \frac{10^-5}{(4.1\times 10^{-21})^{5/2}} \frac{(6.7\times 10^{-34})^3}{(2\pi \cdot 1.7\times 10^{-27})^{3/2}} = 2\times 10^{-5}
+$$
+
+for other particles we have
+
+$$
+\frac{n\lambda^3}{(n\lambda^3)_{\text{proton}}} = \frac{m_{\text{proton}}^{3/2}}{m^{3/2}}
+$$
+
+thus we have
+
+$$
+\begin{aligned}
+    (n\lambda^3)_{\text{hydrogen}} &= 2\times 10^{-5}\\
+    (n\lambda^3)_{\text{helium}} &= 3.12\times 10^{-6}\\
+    (n\lambda^3)_{\text{oxygen}} &= 1.37\times 10^{-7}
+\end{aligned}
+$$
+
+quantum effects become more important when $n\lambda^3 \geq 1$, thus we can have the temperature to be,
+x can be hydrogen, helium or oxygen calculated above
+
+$$
+T = 300K \cdot (n\lambda)^{3/2}_{\text{x at room temperature}}
+$$
+
+\subsection*{1.d}
+since in 3 dimension, the experimental $C_V \propto T^3$, the energy excitation spectrum should have form
+$\epsilon(k) = \hbar c_s k$, then at low temperature limit, we have the heat capcity
+
+$$
+\frac{C_V}{Nk_B} = \frac{12\pi^4}{5} (\frac{T}{T_D})^3, T_D = \frac{\hbar c_s}{k_B} (\frac{6\pi^2 N}{V})^{1/3}
+$$
+
+thus
+
+$$
+C_V = Nk_B \frac{12\pi^4}{5} (\frac{T}{T_D})^3 = 20.4 T^3
+$$
+
+thus
+$$
+\epsilon = \hbar c k = k_B (\frac{2\pi^2 k_B V}{5} \frac{T^3}{C_V})^{1/3} k = (3.16 \times 10^{-34} Jm)k
+$$
+
+\section*{Solar interior}
+\subsection*{2.a}
+
+for massive particles
+
+$$
+\lambda = \frac{h}{\sqrt{2\pi m k_B T}}
+$$
+
+and $T = 1.6\times 10^7 K$ thus
+
+$$
+\begin{aligned}
+    \lambda_{electron} &= \frac{6.7\times 10^{-34} J/s}{\sqrt{2\pi \times (9.1\times 10^{-31} Kg)\cdot (1.4\times 10^{-23}J/K)\cdot (1.6\times 10^7 K)}} \approx 1.9\times 10^{-11}m\\
+    \lambda_{proton} &= \frac{6.7\times 10^{-34} J/s}{\sqrt{2\pi \times (1.7\times 10^{-31} Kg)\cdot (1.4\times 10^{-23}J/K)\cdot (1.6\times 10^7 K)}} \approx 4.3\times 10^{-13}m\\
+\end{aligned}
+$$
+
+and $\lambda_{\alpha} = \frac{1}{2}\lambda_{proton} \approx 2.2\times 10^{-13}m$
+
+\subsection*{2.b}
+we can get the corresponding number density $n$ from their density
+
+$$
+\begin{aligned}
+    n_H = 3.5\times 10^{31} m^{-3}\\
+    n_{He} = 1.5\times 10^{31} m^{-3}\\
+    n_{e} = 2n_{He} + n_{H} = 8.5\times 10^{31} m^{-3}
+\end{aligned}
+$$
+
+thus we have the criterion for degeneracy
+
+$$
+\begin{aligned}
+    n_{H} \cdot \lambda_{H}^3 &\approx 2.8\times 10^{-6} \ll 1\\
+    n_{He} \cdot \lambda_{He}^3 &\approx 1.6\times 10^{-7} \ll 1\\
+    n_{e} \cdot \lambda_{e}^3 &\approx 0.58
+\end{aligned}
+$$
+
+thus electrons are weakly degenerate, nuclei are not.
+
+\subsection*{2.c}
+using the ideal gas law, we have
+
+$$
+P = (n_H + n_{He} + n_{e}) k_B T = 13.5 \times 10^{31} \cdot 1.38\times 10^{-23} \cdot 1.6 \times 10^7 = 3\times 10^{16} N/m^2
+$$
+
+\subsection*{2.d}
+The radiation pressure can be calculated using the black body radiation, which is
+
+$$
+P = \frac{1}{3} \frac{U}{V} = \frac{4\sigma T^4}{3c} = \frac{4 \cdot 5.7\times 10^{-8} \cdot 1.6\times 10^7}{3 \cdot 3\times 10^8} = 1.7\times 10^{13} N/m^2
+$$
+
+\section*{Freezing of $\text{He}^4$}
+\subsection*{3.a}
+the energy can be written as
+
+$$
+\begin{aligned}
+    E &= \sum_{\vec{k}} \frac{\epsilon(\vec{k})}{e^{\beta \epsilon(\vec{k})} - 1}\\
+    &= \sum_{\vec{k}} \frac{\hbar ck}{e^{\beta \hbar ck} - 1}\\
+    &= V\int \frac{d^3k}{(2\pi)^3} \frac{\hbar ck}{e^{\beta \hbar ck} - 1}\\
+    &= V\int \frac{4\pi k^2 dk}{(2\pi)^3} \frac{\hbar ck}{e^{\beta \hbar ck} - 1}\quad (x =\beta \hbar c k)\\
+    &= \frac{V}{2\pi^2} \hbar c (\frac{k_B T}{\hbar c})^4 \int_0^{\infty} dx \frac{x^3}{e^x - 1}\\
+    &= \frac{\pi^2}{30} V \hbar c (\frac{k_B T}{\hbar c})^4
+\end{aligned}
+$$
+
+thus the head capcity is
+
+$$
+C_V = \frac{dE}{dT} = \frac{2\pi^2}{15} V k_B (\frac{k_B T}{\hbar c})^3
+$$
+
+and
+
+$$
+\frac{C_V}{N} = \frac{2\pi^2}{15} \frac{V}{N} k_B (\frac{k_B T}{\hbar c})^3
+$$
+
+\subsection*{3.b}
+the contribution of each mode in head capcity is $\frac{2\pi^2}{15} \frac{V}{N} k_B (\frac{k_B T}{\hbar})^3 \frac{1}{c^3}$, thus
+the total is
+
+$$
+\frac{C_V^s}{N} = \frac{2\pi^2}{15} k_B \frac{V}{N} (\frac{k_B T}{\hbar})^3 (\frac{2}{c^3_T} + \frac{1}{c^3_L})
+$$
+
+\subsection*{3.c}
+
+$$
+\begin{aligned}
+    s_{l}(T) = \int_0^T \frac{C_V(T)dT}{T} = \frac{2\pi^2}{45} k_B v_l (\frac{k_B T}{\hbar c})^3\\
+    s_{s}(T) = \int_0^T \frac{C_V(T)dT}{T} = \frac{2\pi^2}{45} k_B v_l (\frac{k_B T}{\hbar})^3 (\frac{2}{c_T^3} + \frac{1}{c_L^3})\\
+\end{aligned}
+$$
+
+since we have $c\approx c_L \approx c_T$ and $v_l \approx v_s \approx v$, we have
+
+$$
+s_l - s_s = -\frac{4\pi^2}{45} k_B v (\frac{k_B T}{\hbar c})^3 < 0
+$$
+
+thus the solid phase has higher entropy.
+
+\subsection*{3.d}
+
+since we have
+
+$$
+d\mu_l = v_l dP - s_l dT = v_s dP - s_s dT = d\mu_s
+$$
+
+thus
+
+$$
+\frac{dP}{dT} = \frac{s_l - s_s}{v_l - v_s} = -\frac{4\pi^2}{45} k_B \frac{v}{\delta v} (\frac{k_B T}{\hbar c})^3
+$$
+
+thus we have the melting curve as
+
+$$
+P(T) = P(0) -\frac{\pi^2}{45} k_B \frac{v}{\delta v} (\frac{k_B T}{\hbar c})^3 T
+$$
+
+in order to decrease the pressure, we should have $\delta v > 0$, which means solid phase must have higher density. 
+
+\section*{Relativistic Bose gas in $d$ dimensions}
+\subsection*{4.a}
+
+$$
+\begin{aligned}
+    \mathcal{Q} &= \sum_{N=0}^{\infty} e^{N\beta \mu} \sum \exp(\beta -\sum_i n_i \epsilon_i)\\
+    &= \sum_{n} \prod_i \exp[-\beta (\epsilon_i - \mu)n_i]\\
+    &= \prod_i \frac{1}{1 - \exp(-\beta(\epsilon_i - \mu))}
+\end{aligned}
+$$
+
+thus
+
+$$
+\begin{aligned}
+    \mathcal{Q} &= \sum_i \ln(1 - \exp(\beta(\mu - \epsilon_i)))\\
+    &= \int V \frac{d^dk}{(2\pi)^d} \ln(1 - \exp(\beta(\mu - \epsilon_i)))\\
+    &= \frac{V}{(d/2 - 1)! (2\pi)^{d/2}}\int k^{d-1}dk \ln(1 - z\exp(-\beta \hbar c k))\\
+    &= -\frac{V}{(d/2 - 1)! (2\pi)^{d/2}} (\frac{k_B T}{\hbar c})^d \int_0^{\infty} x^{d-1} dx \ln(1 - ze^{-x}), \quad x = \beta\hbar ck\\
+    &= -\frac{V}{(d/2 - 1)! (2\pi)^{d/2}} (\frac{k_B T}{\hbar c})^d \frac{1}{d}(\left. x^d \ln(1 - ze^{-x})\right|_{0}^{\infty} - \int x^d dx \frac{z e^{-x}}{1-ze^{-x}})\\
+    &= \frac{V}{(d/2 - 1)! (2\pi)^{d/2}} (\frac{k_B T}{\hbar c})^d \frac{1}{d} \int x^d dx \frac{z e^{-x}}{1-ze^{-x}}\\
+    &= \frac{V}{(d/2 - 1)! (2\pi)^{d/2}} (\frac{k_B T}{\hbar c})^d \frac{1}{d} d! f_{d+1}^{+}(z)\\
+    &= \frac{V (2\pi)^{d/2}}{(d/2 - 1)!} (\frac{k_B T}{h c})^d (d-1)! f_{d+1}^{+}(z)\\
+\end{aligned}
+$$
+
+thus
+
+$$
+\mathcal{G} = -k_B T \ln(\mathcal{Q}) = -\frac{V (2\pi)^{d/2}}{(d/2 - 1)!} (\frac{k_B T}{h c})^d (d-1)! k_B T f_{d+1}^{+}(z)
+$$
+
+$$
+\begin{aligned}
+    N &= -\frac{\partial \mathcal{G}}{\partial \mu} = -\beta z \frac{\partial \mathcal{G}}{\partial z}\\
+    &=\frac{V (2\pi)^{d/2}}{(d/2 - 1)!} (\frac{k_B T}{h c})^d (d-1)! f_{d}^{+}(z)
+\end{aligned}
+$$
+
+thus density is
+
+$$
+n = \frac{(2\pi)^{d/2}}{(d/2 - 1)!} (\frac{k_B T}{h c})^d (d-1)! f_{d}^{+}(z)
+$$
+
+\subsection*{4.b}
+
+$$
+PV = -\mathcal{G}
+$$
+
+and
+$$
+E = -\frac{\partial \ln(\mathcal{Q})}{\partial \beta} = d \frac{\ln(\mathcal{Q})}{\beta} = -d\mathcal{G}
+$$
+
+thus $E/(PV) = d$, same as classical.
+
+\subsection*{4.c}
+
+the critical temperature is given by $z=1$, thus
+
+$$
+n = \frac{(2\pi)^{d/2}}{(d/2 - 1)!} (\frac{k_B T_c}{h c})^d (d-1)! \zeta_d
+$$
+
+thus
+
+$$
+T_c = \frac{hc}{k_B} (\frac{n (d/2 - 1)!}{(2\pi)^{d/2} (d-1)! \zeta_d})^{1/d}
+$$
+
+zeta is finite only when $d > 1$, thus, transition exists only for $d > 1$
+
+\subsection*{4.d}
+
+$$
+\begin{aligned}
+    C(T) &= \left.\frac{\partial E}{\partial T} \right|_{z=1} = -d \frac{\partial \mathcal{G}}{\partial T}\\
+    &= d(d+1) \frac{V (2\pi)^{d/2}}{(d/2 - 1)!} (\frac{k_B T}{h c})^d (d-1)! k_B \zeta_{d+1}
+\end{aligned}
+$$
+
+\subsection*{4.e}
+
+$$
+\begin{aligned}
+    C(T_c) &= d(d+1) \frac{V (2\pi)^{d/2}}{(d/2 - 1)!} (\frac{k_B}{h c})^d (d-1)! k_B \zeta_{d+1} (\frac{hc}{k_B})^d (\frac{n (d/2 - 1)!}{(2\pi)^{d/2} (d-1)! \zeta_d})\\
+    &=d(d+1) N k_B  \frac{\zeta_{d+1}}{\zeta_d}\\
+\end{aligned}
+$$
+
+thus
+
+$$
+C(T_c)/(Nk_B) = \frac{d(d+1)\zeta_{d+1}}{\zeta_d}
+$$
+
+\end{document}
